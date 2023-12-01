@@ -16,10 +16,22 @@ def find_number_in_line(line ,reverse=False):
 
 
 def main():
+    code_numbers = []
     for line in read_file('q1.txt'):
-        result = find_number_in_line(line)
-        print(result)
-        return
+        result_forwards = find_number_in_line(line, reverse=False)
+        result_backwards = find_number_in_line(line, reverse=True)
+
+        forwards_index = result_forwards[0]
+        backwaeds_indx = result_backwards[0]
+
+        if forwards_index == backwaeds_indx:
+            code_numbers.append(result_forwards[1])
+        else: 
+            code_numbers.append(f"{result_forwards[1]}{result_backwards[1]}")
+    sum = 0
+    [sum := sum + int(i) for i in code_numbers]  
+    print(code_numbers)
+   
 
 if __name__ == "__main__":
     main()
